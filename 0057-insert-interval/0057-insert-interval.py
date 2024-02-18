@@ -13,18 +13,15 @@ class Solution(object):
             # bigger
             elif newInterval[0] > intervals[i][1]:
                 final.append(intervals[i])
-                if i == len(intervals) - 1:
-                    final.append(newInterval)
-                    return final
             # Overlap! Merge time
             else:
                 start = min(intervals[i][0], newInterval[0])
                 end = max(intervals[i][1], newInterval[1])
-                newInterval = [start, end]
-                if i == len(intervals) - 1:
-                    final.append(newInterval)
-                    return final
-                
+                newInterval = [start,end]
+            
+        final.append(newInterval)
+        return final
+            
 
 
 
