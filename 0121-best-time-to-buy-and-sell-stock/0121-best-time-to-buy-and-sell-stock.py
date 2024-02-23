@@ -1,13 +1,16 @@
 class Solution(object):
     def maxProfit(self, prices):
-        lo = prices[0]
-        max_prof = 0
-        for i in prices:
-            lo = min(lo, i)
-            max_prof = max(max_prof, i - lo)
-        return max_prof
+        max_profit = 0
 
+        a, b = 0,0
 
+        while b < len(prices):
+            if (prices[b] - prices[a]) > max_profit:
+                max_profit = prices[b] - prices[a]
+            elif prices[b] - prices[a] < 0:
+                a = b
+            b += 1
+        return max_profit
         """
         :type prices: List[int]
         :rtype: int
