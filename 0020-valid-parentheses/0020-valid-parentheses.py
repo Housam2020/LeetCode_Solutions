@@ -1,23 +1,30 @@
 class Solution(object):
     def isValid(self, s):
-        stack = []
+
+        bb = []
         for i in s:
-            if i == '[' or i == '(' or i == '{':
-                stack.append(i)
-            elif len(stack) != 0:
-                if i == ']' and stack.pop() != '[':
-                    return False
-                elif i == ')' and stack.pop() != '(':
-                    return False
-                elif i == '}' and stack.pop() != '{':
-                    return False
+            if i in ['(','[','{']:
+                bb.append(i)
             else:
-                return False
-        if len(stack) == 0:
-            return True
-        return False
+                # empty list
+                if not bb:
+                    return False
+                x = bb.pop()
+                if x == '(' and i != ')':
+                    return False
+                if x == '{' and i != '}':
+                    return False
+                if x == '[' and i != ']':
+                    return False
+        # gone through whole loop, make sure stack is empty 
+        if bb:
+            return False
+        return True
+
+
+
         """
-        :type s: str
+        :type bb: str
         :rtype: bool
         """
         
